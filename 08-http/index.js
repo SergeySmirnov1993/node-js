@@ -5,11 +5,15 @@ const {
   getComments,
   postComment,
   get404,
+  getHome,
 } = require("./handlers");
 
 const PORT = 3000;
 
 const server = htttp.createServer((req, res) => {
+  if (req.url === "/" && req.method === "GET") {
+    return getHome(req, res);
+  }
   if (req.url === "/http" && req.method === "GET") {
     return getHtml(req, res);
   }
